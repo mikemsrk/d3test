@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+
+<html>
+
+  <head>
+    <script src="http://code.jquery.com/jquery-1.11.3.js"></script>
+    <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+
+    <script>
+
+    $(document).ready(function(){
+
+
+      // for(var i=0;i<array.length;i++){
+      //   var $node = $('<div>O</div>');
+      //   $('body').append($node);
+      // }
+
+
+      var drawGraph = function(){
+
+        $('div').remove();
+
+        var array = [];
+        for (var i=0; i < 50; i++){
+          array.push(Math.floor(Math.random() * 200));
+        }
+        d3.selectAll('div')
+          .data(array)
+          .enter()
+          .append("div")
+          .style("width",function(d){return 0 + "px";})
+          .transition().duration(1500)
+          // .style("color", function(d) {
+          //   return "hsl(" + Math.random()*d * 360 + ",100%,50%)";
+          // })
+          .style("color",function(){return 'white';})
+          .style("text-align",function(){return 'right';})
+          .style("background-color",function(d){
+            return "hsl(" + Math.random()*d * 180 + ",100%,50%)";
+          })
+          .style("width",function(d){return d*10 + "px";})
+          .text(function(d) { return d; })
+          .transition().duration(1500)
+          .style("width",function(d){return 0 + "px";});
+
+          //.style("font-size", function(d) { return d*2 + "px"; })
+      };
+
+
+      drawGraph();
+
+      // $('.reset').on('click',function(e){
+      //   e.preventDefault();
+      //   $('div').remove();
+      //   drawGraph();
+      // });
+
+      setInterval(drawGraph,2750);
+
+    });
+
+
+    </script>
+
+  </head>
+
+  <body bgcolor="black">
+    <!-- <button class="reset">Reset</button> -->
+  </body>
+
+</html>
